@@ -23,29 +23,24 @@ $('.sec1 h3').on('click',function(){
 window.onload = function() {
     countDown("10 October 2025 9:56:00");
 };
-
-function countDown(date) {
-    let futureDate = new Date(date).getTime() / 1000;
-    
-    function updateCountdown() {
-        let currentDate = new Date().getTime() / 1000;
-        let difference = futureDate - currentDate;
-
-        let days = Math.floor(difference / (24 * 60 * 60));
-        let hours = Math.floor((difference - (days * 24 * 60 * 60)) / 3600);
-        let mins = Math.floor((difference - (days * 24 * 60 * 60) - (hours * 3600)) / 60);
-        let secs = Math.floor(difference - (days * 24 * 60 * 60) - (hours * 3600) - (mins * 60));
-
-        $('.days').html(`${days} d`);
-        $('.hours').html(`${hours} h`);
-        $('.min').html(`${mins} m`);
-        $('.sec').html(`${secs} s`);
+    function countDown(date) {
+        let futerDate=new Date(date);
+        futerDate = (futerDate.getTime()/1000);
+        let curruntDate = new Date();
+        curruntDate=(curruntDate.getTime()/1000);
+        difference = (futerDate-curruntDate);
+        let days= Math.floor(difference/(24*60*60));
+        let hours= Math.floor((difference-(days*(24*60*60)))/3600);
+        let min= Math.floor((difference-(days*(24*60*60))-(hours*3600))/60);
+        let sec= Math.floor((difference-(days*(24*60*60))-(hours*3600)-(min*60)));
+        $('.days').html(`${days}d`)
+        $('.hours').html(`${hours}h`)
+        $('.min').html(`${min}m`)
+        $('.sec').html(`${sec}s`)
+        setInterval(function(){
+            countDown(date);
+        },1000)
     }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-}
-
 // footer
 var maxLength = 100;
 $('textarea').keypress(function() {
